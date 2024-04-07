@@ -1,0 +1,27 @@
+services:
+  cicd_frontend:
+    container_name: cicd-frontend
+    image: php:apache
+    environment:
+      - TZ=Europe/Brussels
+    volumes:
+      - ./frontend/htdocs:/var/www/html:ro
+      - ./frontend/apache2.conf:/etc/apache2/apache2.conf:ro
+    restart: unless-stopped
+    stop_grace_period: 5s
+    networks:
+      - traefik_proxy_backend
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.cicd_frontend.entrypoints=web,websecure"
+      - "traefik.http.services.cicd_frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.cicd_frontend.rule=Host(`cicd.nibblepoker.lu`) || Host(`cicd.nibblepoker.com`)"
+      - "traefik.http.routers.cicd_frontend.tls=true"
+      - "traefik.http.routers.cicd_frontend.tls.certresolver=production"
+      - "traefik.http.routers.cicd_frontend.middlewares=authorized-ip-whitelist@file"
+    command: ["/bin/sh", "-c", "a2enmod headers && a2enmod rewrite && a2enmod ratelimit && apache2-foreground"]
+
+networks:
+  traefik_proxy_backend:
+    external: true

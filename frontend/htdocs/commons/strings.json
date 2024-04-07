@@ -1,0 +1,28 @@
+{
+	"en": {
+		"cicd.title": "NibblePoker's CI/CD",
+		"cicd.introduction.title": "Introduction",
+		"cicd.projects.title": "Projects",
+		
+		"lang.menu.title": "Language",
+		"lang.current": "English",
+		"lang.automatic": "Automatic",
+		"lang.english": "English",
+		"lang.french": "French",
+		"lang.german": "German",
+		"lang.luxembourgish": "Luxembourgish"
+	},
+	"fr": {
+		"cicd.title": "",
+		"cicd.introduction.title": "Introduction",
+		"cicd.projects.title": "Projects",
+		
+		"lang.menu.title": "Langue",
+		"lang.current": "Français",
+		"lang.automatic": "Automatique",
+		"lang.english": "Anglais",
+		"lang.french": "Français",
+		"lang.german": "Allemand",
+		"lang.luxembourgish": "Luxembourgeois"
+	}
+}
